@@ -1,0 +1,29 @@
+body{
+    background-color: blanchedalmond;
+    text-align: center;
+    padding: 10px;
+    margin: 0% 25% 0% 25%;
+    width: 50%;
+
+}
+.container{
+    margin: 20px;
+}
+img{
+    border-radius: 10px;
+}
+.title{
+    border: coral;
+    border-style: double;
+    text-decoration: underline;
+}
+
+.info h4{ 
+    text-decoration: underline;
+}
+
+.reviews{
+    border-radius: 1px;
+    border-style: groove;
+    border-color: black;
+}
