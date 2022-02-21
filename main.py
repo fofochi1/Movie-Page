@@ -61,7 +61,7 @@ BASE_URL = "https://api.themoviedb.org/3/movie/"
 movies = ["155","49521","791373", "634649", "370172", "460465", "27205","11688", "864", "207703"]
 
 
-@app.route("/")
+@app.route("/homepage", methods=['POST', 'GET'])
 @login_required
 def homepage():
     """
@@ -90,7 +90,7 @@ def reviews_form():
     review_to_send = Message(review=review, stars=stars, movie=movie, user=user)
     db.session.add(review_to_send)
     db.session.commit()
-    return redirect("/")
+    return redirect(url_for("homepage"))
     
 
 
@@ -139,7 +139,7 @@ def signup():
 
     return redirect(url_for('login_screen'))
 
-@app.route("/login_screen")
+@app.route("/")
 def login_screen():
     return render_template('login.html')
 
