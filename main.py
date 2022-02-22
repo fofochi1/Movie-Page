@@ -18,7 +18,7 @@ from flask_login import UserMixin, LoginManager, login_user, login_required, cur
 load_dotenv(find_dotenv())
 
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY")
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 
 uri = os.getenv("DATABASE_URL")
 if uri and uri.startswith("postgres://"):
