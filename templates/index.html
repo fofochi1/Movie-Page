@@ -9,47 +9,53 @@
             <button type="submit">Logout</button>
           </form>
 
-        <h1>Movie Overview</h1>
-        <div class="title">
-            <h2>{{movie_details["Name"]}}</h2>
-        </div>
-        <div class="info">
-            <h3>{{movie_details["tag"]}}</h3>
-            <h4>Synopsis</h4>
-            <h3>{{movie_details["Overview"]}}</h3>
-            <h3>{{movie_details["Genre"]}}</h3>
-        </div>
-        <div class="container">
-            <img src="{{movie_details['Image']}}" alt="">
-        </div>
-        <br>
-        <div class="url">
-            <a href="{{page_url}}">Wiki</a>
-        </div>
-        <br>
-        <div class="reviewForm">
-            <form method="POST" action="/reviews_form">
-                <input type="text" name="movie" id="movie" value="{{movie_details['Name']}}">
-                <br>
-                <input type="text" name="user" id="user" value="{{current_user}}">
-                <br>
-                <label for="stars">Whats your rating out of 10</label>
-                <input type="text" id="stars" name="stars">
-                <br>
-                <label for="review">Enter a review:</label>
-                <input type="text" id="review" name="review" value="Write your review">
-                <input type="submit" value="Submit">
-              </form> 
-        </div>
-        
-            {% for item in movie_review %}
-            <div class="reviews">
-                <h4>{{item.user}}</h4>
-                <h5>{{item.stars}} out of 10</h5>
-                <p>{{item.review}}</p>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <h1>Movie Overview</h1>
+            <div class="title">
+                <h2>{{movie_details["Name"]}}</h2>
             </div>
-            {% endfor %}
-        
+            <div class="info">
+                <h3>{{movie_details["tag"]}}</h3>
+                <h4>Synopsis</h4>
+                <h3>{{movie_details["Overview"]}}</h3>
+                <h3>{{movie_details["Genre"]}}</h3>
+            </div>
+            <div class="picture">
+                <img src="{{movie_details['Image']}}" alt="">
+            </div>
+            <br>
+            <div class="url">
+                <a href="{{page_url}}">Wiki</a>
+            </div>
+        </div>
+        <br>
+            <div class="col">
+                <h3>Leave a review!!!</h3>
+                <form method="POST" action="/reviews_form">
+                    <input type="text" name="movie" id="movie" value="{{movie_details['Name']}}">
+                    <br>
+                    <input type="text" name="user" id="user" value="{{current_user}}">
+                    <br>
+                    <label for="stars">Whats your rating out of 10</label>
+                    <input type="text" id="stars" name="stars">
+                    <br>
+                    <label for="review">Enter a review:</label>
+                    <input type="text" id="review" name="review" value="Write your review">
+                    <input type="submit" value="Submit">
+                </form> 
+            
+                <h3>Reviews</h3>
+                {% for item in movie_review %}
+                <div class="reviews">
+                    <h4>{{item.user}}</h4>
+                    <h5>{{item.stars}} out of 10</h5>
+                    <p>{{item.review}}</p>
+                </div>
+                {% endfor %}
+        </div>
+        </div>
 
 
         
