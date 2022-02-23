@@ -8,7 +8,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import requests
 from dotenv import find_dotenv, load_dotenv
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin, LoginManager, login_user, login_required, current_user, logout_user
+from flask_login import UserMixin, LoginManager, login_user,login_required, current_user,logout_user
 from wiki import url_api
 from tmdb import api_call
 
@@ -80,12 +80,14 @@ def homepage():
     """
     if current_user.username:
         random_number = randrange(len(movies))
-        response = requests.get(BASE_URL + movies[random_number] + "?api_key=" + os.getenv("TMDB_KEY"))
+        response = requests.get(BASE_URL + movies[random_number]+"?api_key="+os.getenv("TMDB_KEY"))
         array = response.json()
         movie_details = api_call(array)
         page_url = url_api(movie_details["Name"])
         movie_review = Message.query.filter_by(movie=movie_details['Name']).limit(10).all()
-        return render_template("index.html", movie_details = movie_details, page_url = page_url, movie_review=movie_review, current_user=current_user.username)    
+        return render_template("index.html",
+        movie_details = movie_details, page_url = page_url,
+        movie_review=movie_review, current_user=current_user.username)
     return redirect("login_screen")
 
 @app.route('/reviews_form', methods=['POST'])
@@ -117,7 +119,7 @@ def login_post():
     user = User.query.filter_by(username=username).first()
     if not user or not user.password == password:
         flash('Please check your login details and try again.')
-        return redirect(url_for('login_screen')) 
+        return redirect(url_for('login_screen'))
     else:
         login_user(user, remember=True)
         return redirect(url_for('homepage'))
